@@ -116,12 +116,12 @@ export default function Room( {roomId}: RoomId) {
           streamsMap
             ? Object.entries(streamsMap).map(entries => {
               const [userId, stream] = entries
-              return ( <VideoComponent key={userId} userId={userId} stream={stream} />)
+              return ( <VideoComponent key={userId} userId={userId} stream={stream} muted={userId === MY_ID}/>)
             })
             : null
         }
       </div>
-      <BottomBar/>
+      <BottomBar stream={MY_STREAM}/>
     </div>
   )
 }

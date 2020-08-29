@@ -1,6 +1,6 @@
 import React, {useEffect, useRef} from 'react'
 
-function addVideoStream(video: HTMLVideoElement, stream: MediaStream, muted: boolean = true) {
+function addVideoStream(video: HTMLVideoElement, stream: MediaStream, muted: boolean) {
   if(muted) video.muted = true
 
   video.srcObject = stream
@@ -8,7 +8,7 @@ function addVideoStream(video: HTMLVideoElement, stream: MediaStream, muted: boo
 }
 
 export default function VideoComponent(
-  {userId, stream} : {userId: string | null, stream: MediaStream | null}
+  {userId, stream, muted} : {userId: string | null, stream: MediaStream | null, muted: boolean}
 ) {
   const videoElRef =  useRef<HTMLVideoElement>(null)
 
@@ -16,7 +16,7 @@ export default function VideoComponent(
     if(!stream) return
     if(!videoElRef || !videoElRef.current) return
     const video = videoElRef.current
-    addVideoStream(video, stream)
+    addVideoStream(video, stream, muted)
     console.log('Readding video for', userId)
 
     return () => {

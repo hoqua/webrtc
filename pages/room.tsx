@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, useCallback} from 'react'
 import io from 'socket.io-client'
 import { RoomId } from '../utils/api'
 import VideoComponent from "../components/videoComponent";
@@ -24,10 +24,22 @@ export default function Room( {roomId}: RoomId) {
     setStreamsMap((streamsOld:any) => {
       if(!(userId in  streamsOld)) return  streamsOld
       delete streamsOld[userId]
-      console.log(streamsOld)
-      return streamsOld
+
+      return {...streamsOld}
     })
   }
+
+  const repeatTimes = useCallback(
+    () => {
+      if(!streamsMap) return 2
+      const users = Object.keys(streamsMap).length
+      if(users > 12) return 4
+      if(users > 4) return 3
+      if(users > 1) return 2
+      return 1
+    },
+    [streamsMap],
+  )
 
   useEffect(() => {
     (async ()=>{
@@ -74,16 +86,38 @@ export default function Room( {roomId}: RoomId) {
   }, []);
 
   return (
-    <div>
-      {
-        streamsMap
-          ? Object.entries(streamsMap).map(entries => {
-            const [userId, stream] = entries
-            return ( <VideoComponent key={userId}  userId={userId} stream={stream} />)
-          })
-          : null
-      }
-
+    <div style={{
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: '100vh'
+    }}>
+      <div style={ {
+        ...(repeatTimes() > 1
+            ? {
+              gridTemplateColumns: `repeat(${repeatTimes()}, minmax(250px, 1fr))`,
+              gridAutoRows: `minmax(min-content, max-content)`
+            }
+            : {
+              justifyContent: 'center',
+              height: '100%',
+              alignItems: 'center'
+            }
+        ),
+        display:'grid',
+        maxWidth: '1280px',
+        maxHeight: '960px'
+      }}>
+        {
+          streamsMap
+            ? Object.entries(streamsMap).map(entries => {
+              console.log(repeatTimes())
+              const [userId, stream] = entries
+              return ( <VideoComponent key={userId} userId={userId} stream={stream} />)
+            })
+            : null
+        }
+      </div>
     </div>
   )
 }

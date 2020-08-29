@@ -11,15 +11,15 @@ export default function VideoComponent(
   {userId, stream} : {userId: string | null, stream: MediaStream | null}
 ) {
   const videoElRef =  useRef<HTMLVideoElement>(null)
-  console.log('render video ', userId)
 
   useEffect(()=> {
     if(!stream) return
     if(!videoElRef || !videoElRef.current) return
     const video = videoElRef.current
     addVideoStream(video, stream)
+    console.log('Readding video for', userId)
+
     return () => {
-      console.log('MY VIDOE', video)
       video.pause()
       video.removeAttribute('src')
       video.load()
@@ -27,9 +27,9 @@ export default function VideoComponent(
   }, [])
 
   return (
-    <div>
-      <div>Room {userId}</div>
-      <video id={`${userId}`} ref={videoElRef}/>
-    </div>
+    <video style={{
+      maxHeight: '100%',
+      maxWidth: '100%'
+    }} id={`${userId}`} ref={videoElRef}/>
   )
 }

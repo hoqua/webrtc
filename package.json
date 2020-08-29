@@ -7,9 +7,11 @@
     "start": "cross-env NODE_ENV=production node dist/index.js"
   },
   "dependencies": {
+    "@react-hook/hover": "^4.0.0",
     "cross-env": "^7.0.2",
     "express": "^4.17.1",
     "next": "latest",
+    "next-plugin-svgr": "^0.0.6",
     "peer": "^0.5.3",
     "peerjs": "^1.3.1",
     "react": "^16.13.1",

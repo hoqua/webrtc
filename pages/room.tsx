@@ -2,7 +2,7 @@ import React, {useEffect, useState, useCallback} from 'react'
 import io from 'socket.io-client'
 import { RoomId } from '../utils/api'
 import VideoComponent from "../components/videoComponent";
-//import VideoComponent from '../components/videoComponent'
+import BottomBar from "../components/bottomBar";
 
 Room.getInitialProps = async ( { query }: { query: RoomId} ) => {
   return { roomId: query.roomId }
@@ -12,6 +12,9 @@ interface IStreamMap {
   userId: string
   stream: MediaStream
 }
+
+let MY_ID: any
+let MY_STREAM: MediaStream
 
 export default function Room( {roomId}: RoomId) {
   const [streamsMap, setStreamsMap] = useState<IStreamMap | null>(null)
@@ -45,7 +48,7 @@ export default function Room( {roomId}: RoomId) {
     (async ()=>{
       const socket = io('/')
 
-      const myStream = await navigator.mediaDevices.getUserMedia({
+      MY_STREAM = await navigator.mediaDevices.getUserMedia({
         video: true,
         audio: true
       })
@@ -57,23 +60,23 @@ export default function Room( {roomId}: RoomId) {
         path: '/peerjs'
       })
 
-      let MY_ID: any
+
 
       peer.on('open', (myId: string) => {
         MY_ID = myId
         socket.emit('join-room', {roomId, userId: myId})
-        updateStreamsMap(MY_ID, myStream)
+        updateStreamsMap(MY_ID, MY_STREAM)
       })
 
       peer.on('call', (call: any) =>  {
-        call.answer(myStream)
+        call.answer(MY_STREAM)
         call.on('stream', (userVideoStream: MediaStream) =>  {
           updateStreamsMap(call.metadata.id, userVideoStream)
         })
       })
 
       socket.on('user-connected', (userId: string) => {
-        const call = peer.call(userId,  myStream, {metadata: { id: MY_ID} })
+        const call = peer.call(userId,  MY_STREAM, {metadata: { id: MY_ID} })
         call.on('stream', (userVideoStream: MediaStream) => {
           updateStreamsMap(userId, userVideoStream)
         })
@@ -87,6 +90,7 @@ export default function Room( {roomId}: RoomId) {
 
   return (
     <div style={{
+      backgroundColor: '#282a36',
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
@@ -111,13 +115,13 @@ export default function Room( {roomId}: RoomId) {
         {
           streamsMap
             ? Object.entries(streamsMap).map(entries => {
-              console.log(repeatTimes())
               const [userId, stream] = entries
               return ( <VideoComponent key={userId} userId={userId} stream={stream} />)
             })
             : null
         }
       </div>
+      <BottomBar/>
     </div>
   )
 }

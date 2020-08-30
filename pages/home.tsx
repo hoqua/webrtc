@@ -2,6 +2,7 @@ import React, {CSSProperties} from 'react'
 import { useRouter } from 'next/router'
 import { getRoomId } from '../utils/api'
 import ButtonBase from '../components/buttonBase'
+import JoinRoomInputPair from '../components/joinRoomInputPair'
 
 export default function Home (){
   const Router = useRouter()
@@ -18,13 +19,14 @@ export default function Home (){
         <div >
           <h1>Web Real-Time Communication</h1>
           <p className="pb2">WebRTC is a free, open-source project that provides web browsers and mobile applications with real-time communication (RTC) via simple application programming interfaces (APIs).</p>
+          <div>
+            <ButtonBase onClick={() => createRoom()}>
+              Create room
+            </ButtonBase>
+            <JoinRoomInputPair/>
+          </div>
 
-          <ButtonBase onClick={() => createRoom()}>
-            Create room
-          </ButtonBase>
-          <ButtonBase onClick={() => createRoom()} flat>
-            Join room
-          </ButtonBase>
+
 
           <hr className="mt2 mb2"/>
         </div>

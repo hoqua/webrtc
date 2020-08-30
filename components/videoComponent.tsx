@@ -1,5 +1,11 @@
 import React, {useEffect, useRef} from 'react'
 
+type videoComponentProps = {
+  userId: string | null
+  stream: MediaStream | null
+  muted?: boolean
+}
+
 function addVideoStream(video: HTMLVideoElement, stream: MediaStream, muted: boolean) {
   if(muted) video.muted = true
 
@@ -8,7 +14,7 @@ function addVideoStream(video: HTMLVideoElement, stream: MediaStream, muted: boo
 }
 
 export default function VideoComponent(
-  {userId, stream, muted} : {userId: string | null, stream: MediaStream | null, muted: boolean}
+  { userId, stream, muted = false}: videoComponentProps
 ) {
   const videoElRef =  useRef<HTMLVideoElement>(null)
 
@@ -17,7 +23,6 @@ export default function VideoComponent(
     if(!videoElRef || !videoElRef.current) return
     const video = videoElRef.current
     addVideoStream(video, stream, muted)
-    console.log('Readding video for', userId)
 
     return () => {
       video.pause()

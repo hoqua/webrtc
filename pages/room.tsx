@@ -1,30 +1,30 @@
 import React, {useEffect, useState, useCallback, CSSProperties} from 'react'
 import io from 'socket.io-client'
-import { RoomId } from '../utils/api'
+import { IRoomId } from '../utils/api'
 import VideoComponent from "../components/videoComponent";
 import BarBottom from "../components/barBottom";
 
-Room.getInitialProps = async ( { query }: { query: RoomId} ) => {
+Room.getInitialProps = async ( { query }: { query: IRoomId} ) => {
   return { roomId: query.roomId }
 }
 
-interface IStreamMap {
-  userId: string
-  stream: MediaStream
+type StreamMap = {
+  [key: string]: MediaStream
 }
 
-let MY_ID: any
+let MY_ID: string
 let MY_STREAM: MediaStream
 
-export default function Room( {roomId}: RoomId) {
-  const [streamsMap, setStreamsMap] = useState<IStreamMap | null>(null)
+export default function Room( {roomId}: IRoomId) {
+  const [streamsMap, setStreamsMap] = useState<StreamMap | null>(null)
 
   const updateStreamsMap = (userId: string, stream: MediaStream) => {
-    setStreamsMap((streamsOld:any) => ({...streamsOld, [userId]: stream }))
+    setStreamsMap((streamsOld) => ({...streamsOld, [userId]: stream }))
   }
 
-  const deleteFromStreamsMap = (userId: string)=>{
-    setStreamsMap((streamsOld:any) => {
+  const deleteFromStreamsMap = (userId: string )=> {
+    setStreamsMap((streamsOld) => {
+      if(!streamsOld) return streamsOld
       if(!(userId in  streamsOld)) return  streamsOld
       delete streamsOld[userId]
 
@@ -67,6 +67,7 @@ export default function Room( {roomId}: RoomId) {
       })
 
       peer.on('call', (call: any) =>  {
+        console.log(call)
         call.answer(MY_STREAM)
         call.on('stream', (userVideoStream: MediaStream) =>  {
           updateStreamsMap(call.metadata.id, userVideoStream)
@@ -103,8 +104,9 @@ export default function Room( {roomId}: RoomId) {
       }}>
         {
           streamsMap
-            ? Object.entries(streamsMap).map(entries => {
-              const [userId, stream] = entries
+            ? Object.keys(streamsMap).map((userId: string) => {
+              const stream = streamsMap[userId]
+
               return (
                 <VideoComponent key={userId} userId={userId} stream={stream} muted={userId === MY_ID}/>
               )

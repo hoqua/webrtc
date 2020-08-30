@@ -1,10 +1,14 @@
 import React, {CSSProperties, useRef} from 'react'
 import useHover from '@react-hook/hover'
 
-
+type  ButtonRoundProps = {
+  children: React.ReactNode
+  danger?: boolean
+  onClick(event: React.MouseEvent<HTMLButtonElement>): void
+}
 
 export default function ButtonRound(
-  {children, danger = false, onClick}: {children: React.ReactNode, danger?: boolean, onClick: () => void }
+  {children, danger = false, onClick}: ButtonRoundProps
 ) {
   const target = useRef(null)
   const isHovering = useHover(target, {enterDelay: 50, leaveDelay: 50})

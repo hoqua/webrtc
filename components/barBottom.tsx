@@ -5,45 +5,51 @@ import Cam from '../assests/svg/cam.svg'
 import CamOff from '../assests/svg/camOff.svg'
 import ButtonRound from "./buttonRound";
 
-const getMediaTrack =(track: 'video' | 'audio', stream: MediaStream) => {
+const VIDEO = 'video'
+const AUDIO = 'audio'
+
+type MediaTrack = typeof VIDEO| typeof AUDIO
+
+type BarBottomProps = {stream: MediaStream}
+
+const getMediaTrack =(track: MediaTrack, stream: MediaStream) => {
   const tracks = {
-    'video': stream.getVideoTracks()[0],
-    'audio': stream.getAudioTracks()[0]
+    [VIDEO]: stream.getVideoTracks()[0],
+    [AUDIO]: stream.getAudioTracks()[0]
   }
  return tracks[track]
 }
 
-
-export default function BarBottom({stream}:{stream: MediaStream}) {
+export default function BarBottom({ stream }: BarBottomProps) {
   const [isVideoPlaying, setIsVideoPlaying] = useState<Boolean>(true)
   const [isAudioPlaying, setIsAudioPlaying] = useState<Boolean>(true)
 
-  const toggle = (track: 'video' | 'audio', stream: MediaStream) => {
+  const toggle = (track: MediaTrack, stream: MediaStream) => {
     const mediaTrack = getMediaTrack(track, stream)
     mediaTrack.enabled = !mediaTrack.enabled
 
-    if(track === 'video') setIsVideoPlaying(mediaTrack.enabled)
-    if(track === 'audio') setIsAudioPlaying(mediaTrack.enabled)
+    if(track === VIDEO) setIsVideoPlaying(mediaTrack.enabled)
+    if(track === AUDIO) setIsAudioPlaying(mediaTrack.enabled)
   }
 
   useEffect(()=>{
     if(!stream) return
 
-    setIsVideoPlaying(getMediaTrack('video', stream).enabled)
-    setIsAudioPlaying(getMediaTrack('audio', stream).enabled)
+    setIsVideoPlaying(getMediaTrack(VIDEO, stream).enabled)
+    setIsAudioPlaying(getMediaTrack(AUDIO, stream).enabled)
   },[stream])
 
   return (
     <div style={{...BottomBarStyles}}>
       <ButtonRound
         danger={!isVideoPlaying}
-        onClick={()=> toggle('video', stream)}
+        onClick={()=> toggle(VIDEO, stream)}
       >
         {isVideoPlaying ? <Cam/> : <CamOff/>}
       </ButtonRound>
       <ButtonRound
         danger={!isAudioPlaying}
-        onClick={()=> toggle('audio', stream)}
+        onClick={()=> toggle(AUDIO, stream)}
       >
         {isAudioPlaying ? <Mic/> : <MicMute/>}
       </ButtonRound>

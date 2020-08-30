@@ -1,29 +1,33 @@
 import React, {CSSProperties, useRef} from 'react'
 import useHover from '@react-hook/hover'
 
-
+type ButtonBasePropsType = {
+  children: React.ReactNode
+  flat?: boolean
+  disabled?: boolean
+  onClick(event: React.MouseEvent<HTMLButtonElement>): void
+}
 
 export default function ButtonBase(
-  {children, flat = false, onClick}: {children: React.ReactNode, flat?: boolean, onClick: () => void }
+  {children, flat = false, disabled = false, onClick}: ButtonBasePropsType
 ) {
   const target = useRef(null)
   const isHovering = useHover(target, {enterDelay: 50, leaveDelay: 50})
+
   return(
     <button
       onClick={onClick}
       ref={target}
       style={{
         ...ButtonStyles,
-        ...(isHovering
-            ? {filter: 'brightness(85%)'}
-            : {}
-        ),
+        filter: isHovering ? 'brightness(85%)' : 'none',
         ...(flat
-            ? {backgroundColor: 'transparent', color: '#bd93f9'}
-            : {backgroundColor: '#bd93f9', color: '#f8f8f2',}
-        )
-
+            ? {backgroundColor: 'transparent', color: disabled ? '#80868b' : '#bd93f9'}
+            : {backgroundColor: '#bd93f9', color: disabled ? '#80868b' : '#f8f8f2'}
+        ),
+        cursor: disabled ? 'default' : 'pointer'
       }}
+      disabled={disabled}
     >
       {children}
     </button>
@@ -31,18 +35,12 @@ export default function ButtonBase(
 }
 
 const ButtonStyles:CSSProperties = {
-
-  cursor: 'pointer',
   outline: 'none',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
   height: '48px',
   width: '160px',
   marginRight: '10px',
   //border: '1px solid #dadce0',
   border: 'none',
-  fontSize: '16px',
   fontWeight: 'bold',
   borderRadius: '3px ',
   transition: '0.3s ease'

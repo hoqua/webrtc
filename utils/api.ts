@@ -4,9 +4,9 @@ async function api<T>(
   return (await fetch(`api/${url}`)).json()
 }
 
-export interface RoomId {
+export interface IRoomId {
   roomId: string
 }
 export function getRoomId() {
-  return api<RoomId>('getRoomId')
+  return api<IRoomId>('getRoomId')
 }

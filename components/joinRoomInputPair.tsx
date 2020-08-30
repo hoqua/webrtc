@@ -3,7 +3,6 @@ import { useRouter } from 'next/router'
 import InputBase from './inputBase'
 import ButtonBase from './buttonBase'
 
-
 export default function JoinRoomInputPair() {
   const Router = useRouter()
   const [roomId, setRoomId] = useState<string>('')

@@ -47,6 +47,7 @@ export default function BarBottom({ stream }: BarBottomProps) {
       >
         {isVideoPlaying ? <Cam/> : <CamOff/>}
       </ButtonRound>
+
       <ButtonRound
         danger={!isAudioPlaying}
         onClick={()=> toggle(AUDIO, stream)}

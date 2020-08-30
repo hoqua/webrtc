@@ -7,6 +7,7 @@ async function api<T>(
 export interface IRoomId {
   roomId: string
 }
+
 export function getRoomId() {
   return api<IRoomId>('getRoomId')
 }

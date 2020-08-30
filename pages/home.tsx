@@ -15,7 +15,7 @@ export default function Home (){
 
   return (
     <div style={GridStyles}>
-      <div style={CardContainerStyles} className="add-padding">
+      <div style={CardContainerStyles} className="p1">
         <div >
           <h1>Web Real-Time Communication</h1>
           <p className="pb2">WebRTC is a free, open-source project that provides web browsers and mobile applications with real-time communication (RTC) via simple application programming interfaces (APIs).</p>
@@ -31,7 +31,7 @@ export default function Home (){
           <hr className="mt2 mb2"/>
         </div>
       </div>
-      <div className="add-padding">
+      <div className="p1">
         <img src="/assets/img/hero.jpeg" alt="hero banner"/>
       </div>
     </div>

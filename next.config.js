@@ -1,8 +1,9 @@
 // next.config.js
-const withSvgr = require('next-plugin-svgr');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const withSvgr = require('next-plugin-svgr')
 
 module.exports = withSvgr({
   webpack(config, options) {
-    return config;
+    return config
   },
-});
+})

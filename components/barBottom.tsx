@@ -3,7 +3,7 @@ import Mic from '../assests/svg/mic.svg'
 import MicMute from '../assests/svg/micMute.svg'
 import Cam from '../assests/svg/cam.svg'
 import CamOff from '../assests/svg/camOff.svg'
-import ButtonRound from "./buttonRound";
+import ButtonRound from './buttonRound'
 
 const VIDEO = 'video'
 const AUDIO = 'audio'
@@ -21,8 +21,8 @@ const getMediaTrack =(track: MediaTrack, stream: MediaStream) => {
 }
 
 export default function BarBottom({ stream }: BarBottomProps) {
-  const [isVideoPlaying, setIsVideoPlaying] = useState<Boolean>(true)
-  const [isAudioPlaying, setIsAudioPlaying] = useState<Boolean>(true)
+  const [isVideoPlaying, setIsVideoPlaying] = useState<boolean>(true)
+  const [isAudioPlaying, setIsAudioPlaying] = useState<boolean>(true)
 
   const toggle = (track: MediaTrack, stream: MediaStream) => {
     const mediaTrack = getMediaTrack(track, stream)

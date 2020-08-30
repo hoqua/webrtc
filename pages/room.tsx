@@ -1,8 +1,8 @@
 import React, {useEffect, useState, useCallback, CSSProperties} from 'react'
 import io from 'socket.io-client'
 import { IRoomId } from '../utils/api'
-import VideoComponent from "../components/videoComponent";
-import BarBottom from "../components/barBottom";
+import VideoComponent from '../components/videoComponent'
+import BarBottom from '../components/barBottom'
 
 Room.getInitialProps = async ( { query }: { query: IRoomId} ) => {
   return { roomId: query.roomId }
@@ -53,6 +53,7 @@ export default function Room( {roomId}: IRoomId) {
         audio: true
       })
 
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
       const Peer = require('peerjs').peerjs.Peer
       const peer = new Peer(undefined, {
         host: '/',
@@ -85,7 +86,7 @@ export default function Room( {roomId}: IRoomId) {
         deleteFromStreamsMap(userId)
       })
     })()
-  }, []);
+  }, [])
 
   return (
       <div style={ {
@@ -93,7 +94,7 @@ export default function Room( {roomId}: IRoomId) {
         ...(repeatTimes() > 1
             ? {
               gridTemplateColumns: `repeat(${repeatTimes()}, minmax(250px, 1fr))`,
-              gridAutoRows: `minmax(min-content, max-content)`
+              gridAutoRows: 'minmax(min-content, max-content)'
             }
             : {
               justifyContent: 'center',

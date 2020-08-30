@@ -10,12 +10,12 @@ const dev = process.env.NODE_ENV !== 'production';
 
 (async ()=> {
   const next = nextJS({ dev })
-  const handle = next.getRequestHandler();
+  const handle = next.getRequestHandler()
   await next.prepare()
   const app = express()
   const server = http.createServer(app)
   const io = socketIO(server)
-  PeerServer({ port: 3001, path: '/peerjs' });
+  PeerServer({ port: 3001, path: '/peerjs' })
 
   // SOCKET COMMUNICATION
   io.on('connection', socket => {

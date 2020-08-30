@@ -40,8 +40,8 @@ export default function Home (){
 
 const GridStyles:CSSProperties = {
   display: 'grid',
-  gridTemplateColumns: `repeat(2, minmax(250px, 1fr))`,
-  gridAutoRows: `minmax(min-content, max-content)`
+  gridTemplateColumns: 'repeat(2, minmax(250px, 1fr))',
+  gridAutoRows: 'minmax(min-content, max-content)'
 }
 
 const CardContainerStyles:CSSProperties = {

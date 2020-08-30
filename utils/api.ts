@@ -1,5 +1,5 @@
 async function api<T>(
-  url: String
+  url: string
 ): Promise<T> {
   return (await fetch(`api/${url}`)).json()
 }

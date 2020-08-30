@@ -1,7 +1,7 @@
 import '../styles/styles.css'
+import React from 'react'
+import {AppProps} from 'next/app'
 
-// This default export is required in a new `pages/_app.js` file.
-// @ts-ignore
-export default function MyApp({ Component, pageProps }) {
+export default function MyApp({ Component, pageProps }: AppProps) {
   return <Component {...pageProps} />
 }

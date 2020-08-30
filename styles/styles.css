@@ -2,10 +2,35 @@ body {
     font-family: 'SF Pro Text', 'SF Pro Icons', 'Helvetica Neue', 'Helvetica',
     'Arial', sans-serif;
     margin: 0 auto;
+    background-color: #282a36;
+    font-size: 18px;
 }
 
 svg {
     height: 1.5em;
     width: 1.5em;
     color: inherit;
+}
+
+#__next {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.add-padding {
+    padding: 15px;
+}
+
+.pb2 {
+    padding-bottom: 30px;
+}
+
+.mb2 {
+     margin-bottom: 30px;
+ }
+
+.mt2 {
+    margin-top: 30px;
 }

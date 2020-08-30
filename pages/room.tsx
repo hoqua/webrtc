@@ -1,8 +1,8 @@
-import React, {useEffect, useState, useCallback} from 'react'
+import React, {useEffect, useState, useCallback, CSSProperties} from 'react'
 import io from 'socket.io-client'
 import { RoomId } from '../utils/api'
 import VideoComponent from "../components/videoComponent";
-import BottomBar from "../components/bottomBar";
+import BarBottom from "../components/barBottom";
 
 Room.getInitialProps = async ( { query }: { query: RoomId} ) => {
   return { roomId: query.roomId }
@@ -60,8 +60,6 @@ export default function Room( {roomId}: RoomId) {
         path: '/peerjs'
       })
 
-
-
       peer.on('open', (myId: string) => {
         MY_ID = myId
         socket.emit('join-room', {roomId, userId: myId})
@@ -89,14 +87,8 @@ export default function Room( {roomId}: RoomId) {
   }, []);
 
   return (
-    <div style={{
-      backgroundColor: '#282a36',
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      height: '100vh'
-    }}>
       <div style={ {
+        ...GridStyles,
         ...(repeatTimes() > 1
             ? {
               gridTemplateColumns: `repeat(${repeatTimes()}, minmax(250px, 1fr))`,
@@ -107,21 +99,27 @@ export default function Room( {roomId}: RoomId) {
               height: '100%',
               alignItems: 'center'
             }
-        ),
-        display:'grid',
-        maxWidth: '1280px',
-        maxHeight: '960px'
+        )
       }}>
         {
           streamsMap
             ? Object.entries(streamsMap).map(entries => {
               const [userId, stream] = entries
-              return ( <VideoComponent key={userId} userId={userId} stream={stream} muted={userId === MY_ID}/>)
+              return (
+                <VideoComponent key={userId} userId={userId} stream={stream} muted={userId === MY_ID}/>
+              )
             })
             : null
         }
+
+        <BarBottom stream={MY_STREAM}/>
       </div>
-      <BottomBar stream={MY_STREAM}/>
-    </div>
+
   )
+}
+
+const GridStyles:CSSProperties = {
+  display:'grid',
+  maxWidth: '1280px',
+  maxHeight: '960px'
 }

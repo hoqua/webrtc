@@ -3,7 +3,7 @@ import useHover from '@react-hook/hover'
 
 
 
-export default function RoundButton(
+export default function ButtonRound(
   {children, danger = false, onClick}: {children: React.ReactNode, danger?: boolean, onClick: () => void }
 ) {
   const target = useRef(null)
@@ -42,5 +42,5 @@ const ButtonStyles:CSSProperties = {
   margin: '5px',
   border: '1px solid #dadce0',
   borderRadius: '50%',
-  transition: '0.3s ease;'
+  transition: '0.3s ease'
 }

@@ -3,7 +3,7 @@ import Mic from '../assests/svg/mic.svg'
 import MicMute from '../assests/svg/micMute.svg'
 import Cam from '../assests/svg/cam.svg'
 import CamOff from '../assests/svg/camOff.svg'
-import RoundButton from "./roundButton";
+import ButtonRound from "./buttonRound";
 
 const getMediaTrack =(track: 'video' | 'audio', stream: MediaStream) => {
   const tracks = {
@@ -14,7 +14,7 @@ const getMediaTrack =(track: 'video' | 'audio', stream: MediaStream) => {
 }
 
 
-export default function BottomBar({stream}:{stream: MediaStream}) {
+export default function BarBottom({stream}:{stream: MediaStream}) {
   const [isVideoPlaying, setIsVideoPlaying] = useState<Boolean>(true)
   const [isAudioPlaying, setIsAudioPlaying] = useState<Boolean>(true)
 
@@ -35,18 +35,18 @@ export default function BottomBar({stream}:{stream: MediaStream}) {
 
   return (
     <div style={{...BottomBarStyles}}>
-      <RoundButton
+      <ButtonRound
         danger={!isVideoPlaying}
         onClick={()=> toggle('video', stream)}
       >
         {isVideoPlaying ? <Cam/> : <CamOff/>}
-      </RoundButton>
-      <RoundButton
+      </ButtonRound>
+      <ButtonRound
         danger={!isAudioPlaying}
         onClick={()=> toggle('audio', stream)}
       >
         {isAudioPlaying ? <Mic/> : <MicMute/>}
-      </RoundButton>
+      </ButtonRound>
     </div>
   )
 }
@@ -58,7 +58,7 @@ const BottomBarStyles:CSSProperties = {
   alignItems: 'center',
   left: '0',
   bottom: '0',
-  height: '80px',
+  height: '70px',
   width: '100%',
   backgroundColor: '#f8f8f2',
 }

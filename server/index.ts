@@ -12,7 +12,7 @@ import {__peer__, __port__, __prod__} from '../utils/env'
   await next.prepare()
   const app = express()
   const server = http.createServer(app)
-  app.use( __peer__, ExpressPeerServer(server))
+  app.use( `/${__peer__}`, ExpressPeerServer(server))
   const io = socketIO(server)
 
   // SOCKET COMMUNICATION

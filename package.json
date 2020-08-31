@@ -10,6 +10,7 @@
   "dependencies": {
     "@react-hook/hover": "^4.0.0",
     "cross-env": "^7.0.2",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "next": "latest",
     "next-plugin-svgr": "^0.0.6",
@@ -40,7 +41,6 @@
     "ts-node": "^8.10.2",
     "typescript": "3.8.3"
   },
-
   "husky": {
     "hooks": {
       "pre-commit": "yarn lint:fix"

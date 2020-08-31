@@ -1,3 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+require('dotenv').config()
+
 import express, { Request, Response } from 'express'
 import nextJS from 'next'
 import http from 'http'

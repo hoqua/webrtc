@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8eb7a7cf-27d8-4b51-aace-8227756e98cf" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/env.ts" beforeDir="false" afterPath="$PROJECT_DIR$/utils/env.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +57,7 @@
         <entry file="file://$PROJECT_DIR$/.env">
           <provider selected="true" editor-type-id="text-editor">
             <state>
-              <caret column="12" selection-start-column="12" selection-end-column="12" />
+              <caret column="9" selection-start-column="9" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -263,17 +259,24 @@
       <option name="project" value="LOCAL" />
       <updated>1598884947104</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Added dotenv">
+      <created>1598886634031</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1598886634031</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="9863000" />
+    <option name="totallyTimeSpent" value="10555000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6086956" visible="true" weight="0.14120126" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6086956" visible="true" weight="0.14120126" />
       <window_info id="Structure" order="1" sideWeight="0.50080776" side_tool="true" weight="0.14120126" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="npm" order="3" sideWeight="0.39130434" side_tool="true" weight="0.14120126" />
@@ -287,7 +290,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.74604845" weight="0.32936078" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="TypeScript" order="9" sideWeight="0.49947312" weight="0.32936078" />
-      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.69441515" visible="true" weight="0.30010834" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.69441515" visible="true" weight="0.30010834" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.30558482" side_tool="true" weight="0.30010834" />
       <window_info anchor="bottom" id="Messages" order="12" sideWeight="0.49947312" weight="0.32936078" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -365,7 +368,8 @@
     <MESSAGE value="Fixed http to ws" />
     <MESSAGE value="Fixed socket http to ws" />
     <MESSAGE value="Fixed peer js and used separate server for prod" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed peer js and used separate server for prod" />
+    <MESSAGE value="Added dotenv" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added dotenv" />
   </component>
   <component name="WindowStateProjectService">
     <state x="450" y="85" width="1009" height="908" key="CommitChangelistDialog2" timestamp="1598874827457">
@@ -481,7 +485,7 @@
     <entry file="file://$PROJECT_DIR$/.env">
       <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret column="12" selection-start-column="12" selection-end-column="12" />
+          <caret column="9" selection-start-column="9" selection-end-column="9" />
         </state>
       </provider>
     </entry>

@@ -47,7 +47,8 @@ export default function Room( {roomId}: IRoomId) {
 
   useEffect(() => {
     (async ()=>{
-      const socket = io('/')
+      const HOST = location.origin.replace(/^http/,'ws')
+      const socket = io(HOST)
 
       MY_STREAM = await navigator.mediaDevices.getUserMedia({
         video: true,

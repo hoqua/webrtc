@@ -8,7 +8,7 @@ import ButtonRound from './buttonRound'
 const VIDEO = 'video'
 const AUDIO = 'audio'
 
-type MediaTrack = typeof VIDEO| typeof AUDIO
+type MediaTrack = typeof VIDEO | typeof AUDIO
 
 type BarBottomProps = {stream: MediaStream}
 

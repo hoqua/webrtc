@@ -68,8 +68,8 @@ export default function Room( {roomId}: IRoomId) {
       })
 
       peer.on('call', (call: any) =>  {
-        console.log(call)
         call.answer(MY_STREAM)
+
         call.on('stream', (userVideoStream: MediaStream) =>  {
           updateStreamsMap(call.metadata.id, userVideoStream)
         })

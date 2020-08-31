@@ -2,9 +2,8 @@ import express, { Request, Response } from 'express'
 import nextJS from 'next'
 import http from 'http'
 import socketIO from 'socket.io'
-import { ExpressPeerServer } from 'peer'
 import { v4 as uuid } from 'uuid'
-import {__peer__, __port__, __prod__} from '../utils/env'
+import { __peer_port__, __app_port__, __prod__} from '../utils/env'
 
 (async ()=> {
   const next = nextJS({ dev: !__prod__ })
@@ -12,7 +11,13 @@ import {__peer__, __port__, __prod__} from '../utils/env'
   await next.prepare()
   const app = express()
   const server = http.createServer(app)
-  app.use( `/${__peer__}`, ExpressPeerServer(server))
+
+  if(!__prod__){ // IF NOT IN PROD RUN PEER LOCAL SERVER
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const PeerServer = require('peer').PeerServer
+    PeerServer({ port: __peer_port__, path: '/' })
+  }
+
   const io = socketIO(server)
 
   // SOCKET COMMUNICATION
@@ -46,8 +51,8 @@ import {__peer__, __port__, __prod__} from '../utils/env'
     return handle(req, res)
   })
 
-  server.listen(__port__, () => {
-    console.log(`> Ready on http://localhost:${__port__}`)
+  server.listen(__app_port__, () => {
+    console.log(`> Ready on http://localhost:${__app_port__}`)
   })
 })()
 

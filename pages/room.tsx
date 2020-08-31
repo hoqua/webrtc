@@ -3,7 +3,7 @@ import io from 'socket.io-client'
 import { IRoomId } from '../utils/api'
 import VideoComponent from '../components/videoComponent'
 import BarBottom from '../components/barBottom'
-import {__peer__, __port__} from '../utils/env'
+import {__peer_host__, __peer_port__, __prod__} from '../utils/env'
 
 Room.getInitialProps = async ( { query }: { query: IRoomId} ) => {
   return { roomId: query.roomId }
@@ -47,8 +47,7 @@ export default function Room( {roomId}: IRoomId) {
 
   useEffect(() => {
     (async ()=>{
-      const HOST = location.origin.replace(/^http/,'ws')
-      const socket = io(HOST)
+      const socket = io()
 
       MY_STREAM = await navigator.mediaDevices.getUserMedia({
         video: true,
@@ -58,9 +57,10 @@ export default function Room( {roomId}: IRoomId) {
       // eslint-disable-next-line @typescript-eslint/no-var-requires
       const Peer = require('peerjs').peerjs.Peer
       const peer = new Peer(undefined, {
-        host: '/',
-        port:  __port__,
-        path: `/${__peer__}`
+        host: __peer_host__,
+        port: __peer_port__,
+        path: '/',
+        secure: __prod__
       })
 
       peer.on('open', (myId: string) => {

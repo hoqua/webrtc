@@ -2,18 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8eb7a7cf-27d8-4b51-aace-8227756e98cf" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/barBottom.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/barBottom.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/home.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/home.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/env.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/room.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/room.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/index.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -74,8 +78,16 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1598863217649</updated>
-      <workItem from="1598863218847" duration="4914000" />
+      <workItem from="1598863218847" duration="6964000" />
     </task>
+    <task id="LOCAL-00001" summary="Added minor codestyle changes and ts,tsx lint only">
+      <created>1598868219599</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1598868219599</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -84,21 +96,22 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added minore codestyle changes" />
     <MESSAGE value="Added minor codestyle changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added minor codestyle changes" />
+    <MESSAGE value="Added minor codestyle changes and ts,tsx lint only" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added minor codestyle changes and ts,tsx lint only" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="450" y="85" width="1009" height="908" key="CommitChangelistDialog2" timestamp="1598868097518">
+    <state x="450" y="85" width="1009" height="908" key="CommitChangelistDialog2" timestamp="1598868218418">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="450" y="85" width="1009" height="908" key="CommitChangelistDialog2/0.0.1920.1080@0.0.1920.1080" timestamp="1598868097518" />
+    <state x="450" y="85" width="1009" height="908" key="CommitChangelistDialog2/0.0.1920.1080@0.0.1920.1080" timestamp="1598868218418" />
     <state x="182" y="92" width="1536" height="892" key="DiffContextDialog" timestamp="1598868060621">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="182" y="92" width="1536" height="892" key="DiffContextDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1598868060621" />
-    <state x="555" y="276" width="800" height="526" key="Vcs.Push.Dialog.v2" timestamp="1598868103070">
+    <state x="555" y="276" width="800" height="526" key="Vcs.Push.Dialog.v2" timestamp="1598868222824">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="555" y="276" width="800" height="526" key="Vcs.Push.Dialog.v2/0.0.1920.1080@0.0.1920.1080" timestamp="1598868103070" />
+    <state x="555" y="276" width="800" height="526" key="Vcs.Push.Dialog.v2/0.0.1920.1080@0.0.1920.1080" timestamp="1598868222824" />
     <state x="623" y="239" width="672" height="678" key="search.everywhere.popup" timestamp="1598865995302">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>

@@ -2,20 +2,18 @@ import express, { Request, Response } from 'express'
 import nextJS from 'next'
 import http from 'http'
 import socketIO from 'socket.io'
-import { PeerServer } from 'peer'
+import { ExpressPeerServer } from 'peer'
 import { v4 as uuid } from 'uuid'
-
-const port = parseInt(process.env.PORT || '3000', 10)
-const dev = process.env.NODE_ENV !== 'production';
+import {__peer__, __port__, __prod__} from '../utils/env'
 
 (async ()=> {
-  const next = nextJS({ dev })
+  const next = nextJS({ dev: !__prod__ })
   const handle = next.getRequestHandler()
   await next.prepare()
   const app = express()
   const server = http.createServer(app)
+  app.use( __peer__, ExpressPeerServer(server))
   const io = socketIO(server)
-  PeerServer({ port: 3001, path: '/peerjs' })
 
   // SOCKET COMMUNICATION
   io.on('connection', socket => {
@@ -48,8 +46,8 @@ const dev = process.env.NODE_ENV !== 'production';
     return handle(req, res)
   })
 
-  server.listen(port, () => {
-    console.log(`> Ready on http://localhost:${port}`)
+  server.listen(__port__, () => {
+    console.log(`> Ready on http://localhost:${__port__}`)
   })
 })()
 

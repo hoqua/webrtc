@@ -3,6 +3,7 @@ import io from 'socket.io-client'
 import { IRoomId } from '../utils/api'
 import VideoComponent from '../components/videoComponent'
 import BarBottom from '../components/barBottom'
+import {__peer__, __port__} from "../utils/env";
 
 Room.getInitialProps = async ( { query }: { query: IRoomId} ) => {
   return { roomId: query.roomId }
@@ -57,8 +58,8 @@ export default function Room( {roomId}: IRoomId) {
       const Peer = require('peerjs').peerjs.Peer
       const peer = new Peer(undefined, {
         host: '/',
-        port: 3001,
-        path: '/peerjs'
+        port:  __port__,
+        path: __peer__
       })
 
       peer.on('open', (myId: string) => {

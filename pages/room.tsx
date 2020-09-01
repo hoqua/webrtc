@@ -4,6 +4,7 @@ import { IRoomId } from '../utils/api'
 import VideoComponent from '../components/videoComponent'
 import BarBottom from '../components/barBottom'
 import {__peer_host__, __peer_port__, __prod__} from '../utils/env'
+import { Event } from '../utils/enums'
 
 Room.getInitialProps = async ( { query }: { query: IRoomId} ) => {
   return { roomId: query.roomId }
@@ -63,28 +64,29 @@ export default function Room( {roomId}: IRoomId) {
         secure: __prod__
       })
 
-      peer.on('open', (myId: string) => {
+      peer.on(Event.Open, (myId: string) => {
         MY_ID = myId
-        socket.emit('join-room', {roomId, userId: myId})
+        socket.emit(Event.JoinRoom, {roomId, userId: MY_ID})
         updateStreamsMap(MY_ID, MY_STREAM)
       })
 
-      peer.on('call', (call: any) =>  {
+      peer.on(Event.Call, (call: any) =>  {
         call.answer(MY_STREAM)
 
-        call.on('stream', (userVideoStream: MediaStream) =>  {
+        call.on(Event.Stream, (userVideoStream: MediaStream) =>  {
           updateStreamsMap(call.metadata.id, userVideoStream)
         })
       })
 
-      socket.on('user-connected', (userId: string) => {
+      socket.on(Event.UserConnected, (userId: string) => {
         const call = peer.call(userId,  MY_STREAM, {metadata: { id: MY_ID} })
-        call.on('stream', (userVideoStream: MediaStream) => {
+
+        call.on(Event.Stream, (userVideoStream: MediaStream) => {
           updateStreamsMap(userId, userVideoStream)
         })
       })
 
-      socket.on('user-disconnected', (userId: string) => {
+      socket.on(Event.UserDisconnected, (userId: string) => {
         deleteFromStreamsMap(userId)
       })
     })()

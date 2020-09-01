@@ -15,5 +15,6 @@ module.exports = withSvgr({
     PEER_HOST: process.env.PEER_HOST,
     PEER_PORT: process.env.PEER_PORT,
     PORT: process.env.PORT,
+    NODE_ENV: process.env.NODE_ENV
   }
 })

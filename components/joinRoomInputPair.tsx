@@ -3,11 +3,10 @@ import InputBase from './inputBase'
 import ButtonBase from './buttonBase'
 
 type JoinRoomInputPairProps = {
-  onClick(roomId: string): void
+  navigateToRoom(roomId: string): void
 }
 
-
-export default function JoinRoomInputPair({onClick}:JoinRoomInputPairProps) {
+export default function JoinRoomInputPair({navigateToRoom}:JoinRoomInputPairProps) {
   const [roomId, setRoomId] = useState<string>('')
 
   const isDisabled = useCallback(
@@ -15,13 +14,12 @@ export default function JoinRoomInputPair({onClick}:JoinRoomInputPairProps) {
     [roomId]
   )
 
-
   const  handleCodeInputChange = (event: React.ChangeEvent<HTMLInputElement>):void => setRoomId(event.target.value)
 
   return(
     <React.Fragment>
       <InputBase placeholder="Enter room code" onChange={handleCodeInputChange}/>
-      <ButtonBase onClick={() => onClick(roomId)} flat disabled={isDisabled()}> Join room by code </ButtonBase>
+      <ButtonBase onClick={() => navigateToRoom(roomId)} flat disabled={isDisabled()}> Join room by code </ButtonBase>
     </React.Fragment>
   )
 }

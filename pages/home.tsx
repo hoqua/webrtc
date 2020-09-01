@@ -25,7 +25,7 @@ export default function Home (){
 
           <div>
             <ButtonBase onClick={createRoom}>Create room</ButtonBase>
-            <JoinRoomInputPair onClick={navigateToRoom}/>
+            <JoinRoomInputPair navigateToRoom={navigateToRoom}/>
           </div>
 
           <hr className="mt2 mb2"/>

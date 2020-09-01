@@ -3,6 +3,7 @@ import nextJS from 'next'
 import http from 'http'
 import socketIO from 'socket.io'
 import { v4 as uuid } from 'uuid'
+import {Event} from '../utils/enums'
 import { __peer_port__, __app_port__, __prod__} from '../utils/env'
 
 (async ()=> {
@@ -21,14 +22,14 @@ import { __peer_port__, __app_port__, __prod__} from '../utils/env'
   const io = socketIO(server)
 
   // SOCKET COMMUNICATION
-  io.on('connection', socket => {
-    socket.on('join-room', ({ roomId, userId })=>{
+  io.on(Event.Connection, socket => {
+    socket.on(Event.JoinRoom, ({ roomId, userId })=>{
       socket.join(roomId)
 
-      socket.to(roomId).broadcast.emit('user-connected', userId)
+      socket.to(roomId).broadcast.emit(Event.UserConnected, userId)
 
-      socket.on('disconnect', () => {
-        socket.to(roomId).broadcast.emit('user-disconnected', userId)
+      socket.on(Event.Disconnect, () => {
+        socket.to(roomId).broadcast.emit(Event.UserDisconnected, userId)
       })
     })
   })

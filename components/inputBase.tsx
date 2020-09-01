@@ -17,14 +17,14 @@ export default function InputBase({ placeholder, onChange }: InputBaseProps) {
       className="placeholder-fix"
       ref={target}
       style={{
-        ...ButtonStyles,
+        ...InputStyles,
         filter: isHovering ?'brightness(85%)' : 'none'
       }}
     />
   )
 }
 
-const ButtonStyles:CSSProperties = {
+const InputStyles:CSSProperties = {
   outline: 'none',
   height: '48px',
   width: '145px',

@@ -1,37 +1,40 @@
-# Custom server with TypeScript + Nodemon example
+# WebRTC example app
+```(Node\TypesScript\Socket.io\PeerJs\NextJS) ```
 
-The example shows how you can use [TypeScript](https://typescriptlang.com) on both the server and the client while using [Nodemon](https://nodemon.io/) to live reload the server code without affecting the Next.js universal code.
 
-Server entry point is `server/index.ts` in development and `dist/index.js` in production.
-The second directory should be added to `.gitignore`.
+This application demonstrates how to implement video calling for browsers (WebRTC). 
 
-## How to use
+Server entry point is `server/index.ts` in development and `dist/server/index.js` in production.
 
-### Using `create-next-app`
+### Demo 
+A demo using WebRTC implementation. Try it [on heroku](https://hoqua-webrtc.herokuapp.com/).
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
+```Actual env status could be found under GitHub environments section ```
 
-```bash
-npx create-next-app --example custom-server-typescript custom-server-typescript-app
-# or
-yarn create next-app --example custom-server-typescript custom-server-typescript-app
-```
 
-### Download manually
-
-Download the example:
-
-```bash
-curl https://codeload.github.com/vercel/next.js/tar.gz/canary | tar -xz --strip=2 next.js-canary/examples/custom-server-typescript
-cd custom-server-typescript
-```
+### How to 
 
 Install it and run:
 
 ```bash
-npm install
-npm run dev
-# or
 yarn
 yarn dev
 ```
+
+### Contributors ✨
+
+Thanks goes to these people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+```Not that many and still waiting for design updates```
+
+<table>
+  <tr>
+    <td align="center">
+     <a href="https://github.com/ornovetsky">
+       <img src="https://avatars2.githubusercontent.com/u/49710937?s=460" width="100px;" border-radius="50"/>
+       <br />
+       <sub><b>Andrew Ornovetsky</b></sub></a>
+       <br />
+     <a href="https://github.com/hoqua/webrtc/commits?author=ornovetsky" title="Contributions">💻</a> 
+  </tr>
+</table>

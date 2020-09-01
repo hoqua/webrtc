@@ -9,7 +9,11 @@ export default function Home (){
 
   const createRoom = async () => {
     const { roomId } = await getRoomId()
-    await Router.push(`/room?roomId=${roomId}`, `/${roomId}`, {shallow: true})
+    await navigateToRoom(roomId)
+  }
+
+  const navigateToRoom =  async (roomId: string) => {
+     await Router.push(`/room?roomId=${roomId}`, `/${roomId}`, {shallow: true})
   }
 
   return (
@@ -21,7 +25,7 @@ export default function Home (){
 
           <div>
             <ButtonBase onClick={createRoom}>Create room</ButtonBase>
-            <JoinRoomInputPair/>
+            <JoinRoomInputPair onClick={navigateToRoom}/>
           </div>
 
           <hr className="mt2 mb2"/>

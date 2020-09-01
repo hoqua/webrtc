@@ -33,8 +33,9 @@ export default function VideoComponent(
 
   return (
     <video style={{
-      minHeight: '100%',
-      minWidth: '100%'
+      objectFit: 'cover',
+      maxHeight: '100%',
+      maxWidth: '100%'
     }} id={`${userId}`} ref={videoElRef}/>
   )
 }
